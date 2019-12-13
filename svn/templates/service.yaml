@@ -9,20 +9,17 @@ metadata:
 spec:
   ports:
     - name: http-admin
-      nodePort: {{ .Values.subversion.service.nodeProts.http }}
       port: 3343
       protocol: TCP
       targetPort: 3343
     - name: https-admin
-      nodePort: {{ .Values.subversion.service.nodeProts.https }}
       port: 4434
       protocol: TCP
       targetPort: 4434
     - name: http-svn
-      nodePort: {{ .Values.subversion.service.nodeProts.svn }}
-      port: 18080
+      port: 80
       protocol: TCP
-      targetPort: 18080
+      targetPort: 80
   selector:
     app: subversion-edge
     release: svn
