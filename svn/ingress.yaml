@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    # Uncomment as needed
+    #certmanager.k8s.io/cluster-issuer: gitlab-cluster-issuer
+    #certmanager.k8s.io/issuer: gitlab-issuer
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 4G
+  name: svn
+  namespace: default
+spec:
+  rules:
+  - host: svn.yourdomain.com
+    http:
+      paths:
+      - backend:
+          serviceName: svn
+          servicePort: 18080
+  tls:
+  - hosts:
+    - svn.yourdomain.com
+    secretName: svn-tls
+
